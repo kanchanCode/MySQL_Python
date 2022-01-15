@@ -199,3 +199,107 @@ FROM client
 UNION
 SELECT supplier_name
 FROM branch_supplier;
+-- JOINS
+
+INSERT INTO branch VALUES(4,'New Entry',NULL,NULL);
+
+SELECT e.emp_id,e.first_name,b.branch_name
+FROM employee as e
+JOIN branch as b
+ON e.emp_id=b.mgr_id;
+
+SELECT e.emp_id,e.first_name,b.branch_name
+FROM employee as e
+LEFT JOIN branch as b
+ON e.emp_id=b.mgr_id;
+
+SELECT e.emp_id,e.first_name,b.branch_name
+FROM employee as e
+RIGHT JOIN branch as b
+ON e.emp_id=b.mgr_id;
+
+-- NESTED QUERIES
+
+-- names of the employees who have sold over 30,000 to a single client
+SELECT e.first_name,e.last_name
+FROM employee as e
+WHERE e.emp_id IN(
+	SELECT w.emp_id
+	FROM works_with as w
+	WHERE w.total_sales > 30000
+);
+
+-- all clients who are handled by the branch that Micheal Scott manages
+-- (Assume you know Micheal's ID)
+
+SELECT c.client_name
+FROM client as c
+WHERE c.branch_id=(
+	SELECT b.branch_id
+	FROM branch as b
+	WHERE b.mgr_id=102
+);
+
+-- ON DELETE
+-- ON DELETE SET NULL, ON DELETE CASCADE
+
+DELETE FROM employee
+WHERE emp_id=102;
+
+SELECT * FROM branch;
+
+DELETE FROM branch_supplier
+WHERE branch_id=2;
+-- on delete cascade deletes it completely , generally used to 
+-- delete primary key 
+
+-- TRIGGERS
+
+CREATE TABLE triggers_test(
+	message VARCHAR(100)
+);
+
+DELIMITER $$
+CREATE
+    TRIGGER my_trigger BEFORE INSERT
+    ON employee
+    FOR EACH ROW BEGIN
+        INSERT INTO triggers_test VALUES('added new employee');
+    END$$
+DELIMITER ;
+
+INSERT INTO employee
+VALUES(109, 'Oscar', 'Martinez', '1968-02-19', 'M', 69000, 106, 3);
+
+
+DELIMITER $$
+CREATE
+    TRIGGER my_trigger1 BEFORE INSERT
+    ON employee
+    FOR EACH ROW BEGIN
+        INSERT INTO triggers_test VALUES(NEW.first_name);
+    END$$
+DELIMITER ;
+
+INSERT INTO employee
+VALUES(110, 'Kevin', 'Malone', '1978-02-19', 'M', 69000, 106, 3);
+
+DELIMITER $$
+CREATE
+    TRIGGER my_trigger2 BEFORE INSERT
+    ON employee
+    FOR EACH ROW BEGIN
+         IF NEW.sex = 'M' THEN
+               INSERT INTO triggers_test VALUES('added male employee');
+         ELSEIF NEW.sex = 'F' THEN
+               INSERT INTO triggers_test VALUES('added female');
+         ELSE
+               INSERT INTO triggers_test VALUES('added other employee');
+         END IF;
+    END$$
+DELIMITER ;
+INSERT INTO employee
+VALUES(111, 'Pam', 'Beesly', '1988-02-19', 'F', 69000, 106, 3);
+
+SELECT * FROM triggers_test;
+DROP TRIGGER my_trigger1;
