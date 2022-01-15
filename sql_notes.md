@@ -363,16 +363,6 @@ GO;
 
 EXEC SelectAllCustomers @City = 'London', @PostalCode = 'WA1 1DP';
 
-*subprogram*
-A subprogram is a program unit/module that performs a particular task. 
-A subprogram can be invoked by another subprogram or program which is called the calling program.
-
-*sub program in PL/SQL*
-PL/SQL provides two kinds of subprograms −
-
-Functions − These subprograms return a single value; mainly used to compute and return a value.
-
-Procedures − These subprograms do not return a value directly; mainly used to perform an action.
 
 # Triggers 
 
@@ -452,6 +442,74 @@ Relationship Cardinality
 4. Many to Many - N:M
 
 # Quality Analysis and Optimization
+
+Query->Engine -> Query Optimizer(Statistics)-> execution plan
+
+Query Optimizer: It will validate and execute the best execution plan .
+Execution Plan: It will decide the sequence to access the source table
+                Suitable method to extract the data from tables  like index_scan
+                Used to compute calculations, filter, aggregate and sort data extracted
+
+To optimize SQL Queries
+1. column_name varchar(100) DEFAULT NULL; instead of char(100) saves memory
+2. Replace union with union all to improve efficiency
+3. use limit etc
+
+
+
+# T-SQL and P-SQL
+T-SQL is a proprietary procedural language for MS SQL Server
+PL/SQL is a proprietary procedural language for ORacle Database
+T-SQL and PL/SQL are an extension of standard SQL
+They have more features and functions than SQL like variable , built-in functions
+
+PL/SQL
+*subprogram*
+A subprogram is a program unit/module that performs a particular task. 
+A subprogram can be invoked by another subprogram or program which is called the calling program.
+
+*sub program in PL/SQL*
+PL/SQL provides two kinds of subprograms −
+
+Functions − These subprograms return a single value; mainly used to compute and return a value.
+
+Procedures − These subprograms do not return a value directly; mainly used to perform an action.
+
+# Transanctional SQL (T-SQL)
+A transaction mainly consists of 4 properties that are also known as ACID rules.
+
+1. Atomicity: Atomic means that all the work in the transaction is treated as a single unit. Either it is performed completely or none of it is and at the point of failure the previous operations are rolled back to their former state.
+
+2. Consistency: Transactions ensure that the database properly changes states upon a successfully committed transaction. In other words, if a transaction completes successfully then the database should be in a new state that will reflect changes else the transaction remains in the same state as at an initial point.
+
+3. Isolation: It ensures that transactions operate independently and are transparent to each other. In other words, if more than one transactions are running then they do not effect each other.
+
+4. Durability: It ensures that the effect of committed transactions will save in the database permanently and should persist no matter what happens (like in a power failure).
+
+Types of Transactions
+
+In SQL, transactions are of the following two types:
+
+1. Implicit Transections
+2. Explicit Transections
+
+Implicit transactions in the SQL language are performed by a DML query (insert, update and delete) and DDL query (alter, drop, truncate and create) statements. All these queries are handled by Implicit Transactions.
+
+If any error occurs then the SQL Server will rollback the complete statement.
+
+An explicit transaction is defined and controlled by the user on a DML query (insert, update or delete). A transaction is not applied on a SELECT command because is doesn't affect the data. A transaction is not used in creating tables or dropping them because these operations are automatically committed in the database.
+
+BEGIN: To initiate a transaction.
+COMMIT: To save changes. After the commit command, the transaction can't rollback.
+SAVEPOINT: Provides points where the transaction can rollback to.
+ROLLBACK: To rollback to a previous saved state
+
+Begin: Initiate transaction.
+Transaction| Tran: We can use any one out of both.
+Transaction_Name: Used for providing a name for a transaction.
+@Trans_Name: This is the name of a user-defined variable containing a valid transaction name.
+End: Indicates the end of the transaction.
+
 
 # Data Normalization 
 
