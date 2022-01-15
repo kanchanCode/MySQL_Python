@@ -1,0 +1,12 @@
+2022-01-14 23:20:38,636:import_db:ERROR:1007 (HY000): Can't create database 'cpu_log_duplicate'; database exists
+2022-01-14 23:20:38,679:export_db:INFO:Databases Exported to file
+2022-01-14 23:27:51,881:import_db:ERROR:1007 (HY000): Can't create database 'cpu_log_duplicate'; database exists
+2022-01-14 23:27:51,927:export_db:INFO:Databases Exported to file
+2022-01-14 23:53:10,112:import_db:INFO:Databases Imported to file
+2022-01-14 23:53:10,180:export_db:INFO:Databases Exported to file
+2022-01-14 23:57:57,990:import_db:INFO:Databases Imported to file
+2022-01-14 23:57:58,026:export_db:INFO:Databases Exported to file
+2022-01-14 23:59:14,201:import_db:ERROR:1007 (HY000): Can't create database 'crud_operations'; database exists
+2022-01-14 23:59:14,227:export_db:INFO:Databases Exported to file
+2022-01-15 00:05:54,750:import_db:INFO:Databases Imported to file
+2022-01-15 00:05:54,777:export_db:INFO:Databases Exported to file
