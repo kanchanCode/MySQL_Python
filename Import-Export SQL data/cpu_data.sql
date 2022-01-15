@@ -19,3 +19,9 @@ technology varchar(30),files_changed int(10));
 
 drop table cpu_log;
 desc cpu_log;
+
+select * from cpu_log;
+
+select Roll_no,user_name,technology from cpu_log where user_name='you@example.com';
+
+CREATE INDEX cpu_log_user_name_idx ON cpu_log(user_name);
