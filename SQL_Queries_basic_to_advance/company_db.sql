@@ -298,8 +298,45 @@ CREATE
          END IF;
     END$$
 DELIMITER ;
+
 INSERT INTO employee
 VALUES(111, 'Pam', 'Beesly', '1988-02-19', 'F', 69000, 106, 3);
 
 SELECT * FROM triggers_test;
 DROP TRIGGER my_trigger1;
+
+-- stored procedure
+DELIMITER $$
+CREATE PROCEDURE to_show()
+BEGIN
+SELECT * FROM employee;
+END$$
+DELIMITER ;
+
+CALL to_show;
+
+-- with parameters
+-- Specify the type of the parameter. It can be IN, OUT or INOUT
+-- Specify the name and data type of the 
+
+DELIMITER //
+CREATE PROCEDURE sp_Get_salary(IN salry int(20))
+BEGIN
+    select first_name,last_name,branch_id,salary from employee where salary=salry;
+END //
+DELIMITER ;
+
+CALL sp_Get_salary(250000);
+
+DELIMITER //
+CREATE PROCEDURE sp_Get_count(INOUT count_emp int,IN param_salry int(20))
+BEGIN
+    select count(emp_id) INTO count_emp FROM employee where salary=param_salry;
+END //
+DELIMITER ;
+
+CALL sp_Get_count(@T,250000);
+
+SELECT @T as emp_id;
+
+DROP PROCEDURE sp_Get_count;
