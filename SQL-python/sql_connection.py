@@ -183,6 +183,7 @@ if __name__=="__main__":
 
     #to drop database
     execute_query(connection,drop_db_query)
+    
 
 # def __init__(self):
 #     self.mydb=mysql.connector.connect(host="localhost",user=db_user,password=db_pass)
