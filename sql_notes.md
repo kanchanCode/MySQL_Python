@@ -457,7 +457,7 @@ To optimize SQL Queries
 
 
 
-# T-SQL and P-SQL
+# T-SQL and PL-SQL
 T-SQL is a proprietary procedural language for MS SQL Server
 PL/SQL is a proprietary procedural language for ORacle Database
 T-SQL and PL/SQL are an extension of standard SQL
@@ -510,7 +510,29 @@ Transaction_Name: Used for providing a name for a transaction.
 @Trans_Name: This is the name of a user-defined variable containing a valid transaction name.
 End: Indicates the end of the transaction.
 
+# EXPLAIN command
+Explain keyword results in their output using some column names as shown above. They are explained below:
+EXPLAIN (QUERY Statement) ; /* ONLY TAKES COMMAND AS PARAMETER */
+
+1. id: It represents the id of the query which is to be explained.
+2. SELECT_TYPE:  The complexity in the select clause is showed here. In the above case, it is very simple.
+3. table: The name of the Table used is displayed here.
+4. Partitions: This shows the number of partitions of the table joined in the query.
+5. type: It specifies the Join Type.
+6. possible_keys: Which keys could have been used.
+7. key: which keys are used.
+8. key_len: Length of the Key used.
+9. ref: Mentions any sort of references used in query while comparing columns or not.
+10. rows: The number of rows over which query acts.
+11. Filtered: The rows which are filtered using the conditions in the WHERE clause.
+12. Extra: Some additional details regarding the executed query.
+In this way, EXPLAIN keyword is used to get all the information about the query and tabulate them so that they can be stored in DB for further references.
+
+
 
 # Data Normalization 
+1. 1NF
+2. 2NF
+3. 3NF
+4. BCNF
 
-# Import/Export using Python Connectivity DONE 
