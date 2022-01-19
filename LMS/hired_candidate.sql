@@ -1,0 +1,22 @@
+CREATE TABLE hired_candidates (
+  id int(11) NOT NULL,
+  first_name varchar(100) NOT NULL,
+  middle_name varchar(100) DEFAULT NULL,
+  last_name varchar(100) NOT NULL,
+  email varchar(50) NOT NULL,
+  mobile_num bigint(20) NOT NULL,
+  hired_city varchar(50) NOT NULL,
+  hired_date datetime NOT NULL,
+  degree varchar(100) NOT NULL,
+  aggr_per double DEFAULT NULL,
+  current_pincode int(11) DEFAULT NULL,
+  permanent_pincode int(11) DEFAULT NULL,
+  hired_lab varchar(20) DEFAULT NULL,
+  attitude_remark varchar(15) DEFAULT NULL,
+  communication_remark varchar(15) DEFAULT NULL,
+  knowledge_remark varchar(15) DEFAULT NULL,
+  status varchar(20) NOT NULL,
+  creator_stamp datetime DEFAULT NULL,
+  creator_user int(11) DEFAULT NULL,
+  PRIMARY KEY (id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8; 
